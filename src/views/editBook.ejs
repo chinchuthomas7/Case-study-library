@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title><%=title%></title>
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="/css/styles.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <!-- <a class="navbar-brand js-scroll-trigger" href="/"><img src="/images/navbar-logo.svg" alt="" /></a> -->
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ml-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ml-auto">
+                        <%for(let i = 0; i < nav.length; i++){%>
+                            <%if(nav[i].name==="profile"){%>
+                                <li class="nav-item">
+                                    <a class="nav-link js-scroll-trigger" href="<%=nav[i].link%>"><%=profileName%> <img src="/images/person.png" alt="" style="width:20px;height:20px;border-radius:50%;"></a>
+                                </li>
+                            <%} else{%>
+                                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="<%=nav[i].link%>"><%=nav[i].name%></a></li>
+                            <%}%>
+                        <%}%>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Add book-->
+        <section class="page-section input-section input-section-bg-dark d-flex align-items-center" id="addBook">
+            <div class="container">
+                <br>
+                <br>
+                <div class="text-center">
+                    <h2 class="section-heading " style="font-family: cursive;">Edit Book</h2>
+                   
+                </div>
+                <form id="addBookForm" name="addBookForm" class="input-form" action="/books/edit/<%=book._id%>" method="POST" enctype="multipart/form-data" novalidate=true>
+                    <div class="row align-items-stretch mb-5">
+                        <div id="success" class="col-md-12 text-center"></div>
+                        <div class="col-md-6">
+                            <div class="form-group" style="margin-left: 450px;">
+                                <input class="form-control" id="title" name="title"style="background-color: rgb(230, 231, 229); color: darkred; width: 200px;height:50px;"  type="text" placeholder="Title" value="<%=book.title%>" required="required" data-validation-required-message="enter book title." />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="form-group"  style="margin-left: 450px;">
+                                <input class="form-control" id="author" style="background-color: rgb(230, 231, 229); color: darkred; width: 200px;height:50px;"  name="author" type="text" placeholder="Author" value="<%=book.author%>" required="required" data-validation-required-message="enter auther name." />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="form-group"  style="margin-left: 450px;">
+                                <input class="form-control" style="background-color: rgb(230, 231, 229); color: darkred; width: 200px;height:50px;"  id="genre" name="genre" type="text" placeholder="Genre " value="<%=book.genre%>" required="required" data-validation-required-message="enter book genre." />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="form-group mb-md-0"  style="margin-left: 450px;">
+                                <!-- <label for="img" style="color: white;">Select an image of size less than 1 MB</label> -->
+                                <input class="form-control" id="img" style="background-color: rgb(230, 231, 229); color: darkred; width: 200px;height:50px;"  name="img" type="file" accept="image/*" placeholder="Image"/>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="text-center">
+                        <a href="/books" class="btn btn-light btn-xl " id="cancelButton" role="button" style="background-color: rgb(185, 10, 54); border-radius: 8px;height: 50px;color: ghostwhite;">Cancel</a>
+                        <button class="btn btn-primary btn-xl text-uppercase" id="addBookButton" type="submit" style="background-color: forestgreen; border-radius: 8px;height: 50px;">Save</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <!-- Footer-->
+        
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <!-- Form validation JS-->
+        <script src="/js/jqBootstrapValidation.js"></script>
+        <script>
+            var errorMsg = "<%=errorMsg%>";
+            var successMsg = "<%=successMsg%>";
+        </script>
+        <script src="/js/validation.js"></script>      <!-- This external js file handles validations -->
+        <!-- Core theme JS-->
+        <script src="/js/scripts.js"></script>        
+    </body>
+</html>
